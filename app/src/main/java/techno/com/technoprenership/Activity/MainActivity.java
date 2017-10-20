@@ -1,5 +1,6 @@
-package techno.com.technoprenership;
+package techno.com.technoprenership.Activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import jp.wasabeef.blurry.Blurry;
+import techno.com.technoprenership.R;
 import techno.com.technoprenership.Tab.MyAdapter;
 import techno.com.technoprenership.Tab.SlidingTabLayout;
 
@@ -34,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
         mSlidingTabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         mSlidingTabLayout.setCustomTabView(R.layout.tab_view,R.id.tv_tab);
         mSlidingTabLayout.setViewPager(mViewPager);
+        Blurry.with(MainActivity.this)
+                .radius(25)
+                .sampling(1)
+                .color(Color.argb(66, 0, 255, 255))
+                .async();
     }
 
     @Override
