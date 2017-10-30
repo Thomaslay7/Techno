@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/relativeLayout"
     tools:context="techno.com.technoprenership.Activity.Login"
-    android:background="@drawable/animation_list">
+    android:background="@drawable/blue">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -18,36 +18,10 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp">
-        <EditText android:id="@+id/txt_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            />
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/txt_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Password"
-
-            />
-
-    </android.support.design.widget.TextInputLayout>
-    <CheckBox
+        <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tampilkan Password"
@@ -85,5 +59,24 @@
         android:text="Register"/>
 
 </LinearLayout>
+
+
+    <EditText android:id="@+id/txt_username"
+        android:layout_width="335dp"
+        android:layout_height="60dp"
+        android:hint="Username"
+        android:background="@drawable/edittextstyle"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/txt_password"
+        android:layout_alignParentStart="true" />
+    <EditText android:id="@+id/txt_password"
+        android:layout_width="335dp"
+        android:layout_height="60dp"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:background="@drawable/edittextstyle"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>
