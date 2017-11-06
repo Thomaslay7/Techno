@@ -22,7 +22,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         super();
         mItems = new ArrayList<EndangeredItem>();
        // set data item review
-/*
+
         EndangeredItem nama = new EndangeredItem();
         nama.setName("Review 1");
         nama.setThumbnail(R.drawable.ic_camera_enhance_black_24dp);
@@ -132,7 +132,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
         nama.setName("Review 20");
         nama.setThumbnail(R.drawable.ic_camera_enhance_black_24dp);
         mItems.add(nama);
-*/
+
 
     }
 

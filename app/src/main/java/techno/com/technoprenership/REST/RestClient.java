@@ -24,15 +24,17 @@ import techno.com.technoprenership.Model.APIUser;
 
 public class RestClient {
     private static GitApiInterface gitApiInterface;
-    private static String baseUrl = "http://localhost:8080" ;
+    private static String baseUrl = "http://192.168.221.1:8080" ;
 
 
     public static GitApiInterface getClient(){
         if(gitApiInterface==null){
 
-           // Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
 
             OkHttpClient okClient = new OkHttpClient();
+
             okClient.interceptors().add(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
@@ -54,19 +56,19 @@ public class RestClient {
     }
 
     public interface GitApiInterface {
+        @FormUrlEncoded
+        @POST("/webservice/public/login")
+        Call<APIUser> login(@Field("email") String email, @Field("password") String password);
 
         @FormUrlEncoded
-        @POST("/web/public/login")
-        Call<APIUser> login(@Field("email") String username, @Field("password") String password);
+        @POST("/webservice/public/register")
+        Call<APIBaseResponse> register(@Field("name") String name, @Field("email") String email, @Field("password") String password);
 
+        //@Headers("Cache-Control: no-cache")
         @FormUrlEncoded
-        @POST("/web/public/register")
-        Call<APIBaseResponse> register(@Field("name") String nama, @Field("email") String email, @Field("password") String password);
-
-        /*@Headers("Cache-Control: no-cache")
-        @GET("/api/index.php/Pengajar/show")
-        Call<APIGuruData> showguru();
-
+        @GET("/webservice/public/listUser")
+        Call<APIUser> showguru();
+/*
         @FormUrlEncoded
         @POST("/api/index.php/Murid/order")
         Call<APIOrderData> order(@Field("id_pengajar") int idpengajar, @Field("id_murid") int idmurid);
