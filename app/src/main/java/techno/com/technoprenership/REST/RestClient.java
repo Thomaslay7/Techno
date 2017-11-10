@@ -24,7 +24,7 @@ import techno.com.technoprenership.Model.APIUser;
 
 public class RestClient {
     private static GitApiInterface gitApiInterface;
-    private static String baseUrl = "http://192.168.221.1:8080/" ;
+    private static String baseUrl = "http://192.168.1.101:8080/" ;
 
 
     public static GitApiInterface getClient(){

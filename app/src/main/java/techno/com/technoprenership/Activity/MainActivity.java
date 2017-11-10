@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import jp.wasabeef.blurry.Blurry;
+import techno.com.technoprenership.Preferences.SessionManager;
 import techno.com.technoprenership.R;
 import techno.com.technoprenership.Tab.MyAdapter;
 import techno.com.technoprenership.Tab.SlidingTabLayout;
@@ -21,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
     private SlidingTabLayout mSlidingTabLayout;
     private ViewPager mViewPager;
-
+    SessionManager sessions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        sessions = new SessionManager(this);
         mViewPager = (ViewPager) findViewById(R.id.vp_tabs);
         mViewPager.setAdapter(new MyAdapter(getSupportFragmentManager(),this));
 
@@ -53,16 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_settings:
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+                sessions.logoutUser();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

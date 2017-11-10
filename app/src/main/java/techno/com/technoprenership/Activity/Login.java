@@ -7,9 +7,11 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -206,6 +208,15 @@ public class Login extends AppCompatActivity {
 
         });
     }
+    public void setPasswordVisibility(View v)
+    {
+        EditText txtPassword = (EditText)findViewById(R.id.txt_password);
+        CheckBox ckpas=(CheckBox)findViewById(R.id.checkBox);
+        if(ckpas.isChecked())
+            txtPassword.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        else
+            txtPassword.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+    }
     @Override
     public void onBackPressed()
     {
@@ -226,8 +237,7 @@ public class Login extends AppCompatActivity {
 
         //  private RestClient.GitApiInterface service;
         // private Call<APIMuridData> callLogin;
-        HttpUrlConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setConnectTimeout(7000);
+
         service = RestClient.getClient();
         callLogin = service.login(username, password);
 
@@ -262,7 +272,7 @@ public class Login extends AppCompatActivity {
                         Log.d("LoginActivity", "response = " + new Gson().toJson(result));
                         sessions.createLoginSession(result);
 
-                        Toast.makeText(getBaseContext(),result.getRespon().getId()+" Login Berhasil sebagai "+username+" Role : Murid", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(),result.getRespon().getId()+" Login Berhasil sebagai "+username, Toast.LENGTH_LONG).show();
                         intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         progressDialog.dismiss();
