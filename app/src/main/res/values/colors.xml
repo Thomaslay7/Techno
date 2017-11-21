@@ -13,5 +13,6 @@
     <color name="white">#fff</color>
     <color name="blue">#4f80ff</color>
     <color name="red">#f92c48</color>
+    <color name="colorBackground">#11a7f8</color>
     <color name="black">#383435</color>
 </resources>

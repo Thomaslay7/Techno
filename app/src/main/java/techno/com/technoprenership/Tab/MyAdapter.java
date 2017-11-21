@@ -38,7 +38,7 @@ public class MyAdapter extends FragmentPagerAdapter
         Fragment frag = null;
 
         if (position == 0) {
-            frag = new HomeFragment();
+         //   frag = new HomeFragment();
         } else if (position == 1) {
             frag = new KategoriFragment();
         } else if (position == 2) {

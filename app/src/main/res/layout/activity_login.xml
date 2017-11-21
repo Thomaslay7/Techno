@@ -9,89 +9,163 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/relativeLayout"
     tools:context="techno.com.technoprenership.Activity.Login"
-    android:background="@drawable/blue">
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fitsSystemWindows="true">
+    android:background="@drawable/baground">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/formLogo"
+        android:src="@drawable/ic_logo"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="30dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/formLogo"
+        android:id="@+id/scrollView"
+        >
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/trans_white_rectangle"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
 
-            android:focusable="true"
-            android:focusableInTouchMode="true">
-
-            <ImageView android:src="@drawable/ic_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="190dp"
-                android:layout_marginBottom="24dp"
-                android:layout_gravity="center_horizontal" />
-
-            <android.support.design.widget.TextInputLayout
+            android:weightSum="1">
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp">
-                <EditText android:id="@+id/txt_username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Username"
-                    />
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
+                android:text="Let's Review"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                />
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/txt_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:hint="Password"
+                android:text="everthing "
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_marginBottom="30dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
 
-                    />
-            </android.support.design.widget.TextInputLayout>
+                />
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Email"
+                android:background="@drawable/rounded_white"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:drawableLeft="@drawable/ic_user_icon"
+                android:textSize="14sp"
+                android:drawablePadding="5dp"
+                android:paddingStart="10dp"
+                android:id="@+id/txt_username"
+                android:layout_marginBottom="10dp"
+                />
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Password"
+                android:background="@drawable/rounded_white"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:drawableLeft="@drawable/ic_pass_icon"
+                android:textSize="14sp"
+                android:drawablePadding="5dp"
+                android:paddingStart="10dp"
+                android:inputType="textPassword"
+                android:id="@+id/txt_password"
+                android:layout_marginBottom="10dp"
+
+                /><![CDATA[
+            AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Confirm Password"
+                android:background="@drawable/rounded_white"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:drawableLeft="@drawable/ic_confirm_icon"
+                android:textSize="14sp"
+                android:drawablePadding="5dp"
+                android:paddingStart="10dp"
+                android:inputType="textPassword"
+                android:id="@+id/userCPassword"
+                android:layout_marginBottom="10dp"
+
+                />
+
+
+
+            ]]>
 
             <CheckBox
-                android:layout_width="173dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tampilkan Password"
                 android:id="@+id/checkBox"
-                android:layout_below="@+id/txtPass"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
                 android:checked="false"
                 android:onClick="setPasswordVisibility" />
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_login"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textColor="@color/white"
+                android:text="Login"
+                android:textStyle="normal"
+                android:background="@drawable/register_button"
+                android:layout_gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="4dp"
-                android:padding="5dp"
-                android:background="@drawable/buttonshape"
-                android:text="Login"/>
+                android:layout_marginBottom="36dp"
+                android:id="@+id/btn_login" />
 
-            <TextView android:id="@+id/link_signup"
-                android:layout_width="fill_parent"
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:text="OR"
-                android:gravity="center"
-                android:textSize="16dip"/>
+                android:text="Don't have an account ?"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="5dp"
+                android:textSize="13sp" />
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_register"
-                android:layout_width="fill_parent"
+            <TextView
+                android:id="@+id/txtSignUp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/buttonshape"
-                android:text="Register"/>
+                android:text="Sign Up Now"
+                android:textColor="@color/blue"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="5dp"
+                android:textSize="13sp"
+                android:layout_weight="0.13" />
 
         </LinearLayout>
+
     </ScrollView>
+    TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="We will be sending a confirmation code via SMS.
+    Please input the CODE to activate your account"
+        android:textColor="@color/white"
+        android:layout_below="@+id/scrollView"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        />
 </RelativeLayout>

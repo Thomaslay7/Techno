@@ -1,101 +1,82 @@
 package techno.com.technoprenership.Adapter;
 
 
-
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import techno.com.technoprenership.R;
-
-
 /**
  * Provide views to RecyclerView with data from mDataSet.
  */
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
-    private static final String TAG = "CustomAdapter";
+public class CustomAdapter  {
+/*
+    List<APIReview.ResponBean.DataBean> listRevie;
+    private Context context;
+    private String notlp1,email,tgllahir,tempatlahir,jeniskelamin,namabelakang;
 
-    private String[] mDataSet,mDataSet2;
-    private int[] mDataSet3;
 
-    // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
-    /**
-     * Provide a reference to the type of views that you are using (custom ViewHolder)
-     */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView,textView2;
-        private final ImageView icon;
+    public CustomAdapter(Context context, List<APIReview.ResponBean.DataBean> listReview) {
+        this.context = context;
+        this.listRevie = listReview;
 
-        public ViewHolder(View v) {
-            super(v);
-            // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "Element " + getPosition() + " clicked.");
-                }
-            });
-            textView = (TextView) v.findViewById(R.id.judul);
-            textView2 = (TextView) v.findViewById(R.id.deskripsi);
-            icon = (ImageView) v.findViewById(R.id.img_thumbnail);
-        }
-
-        public TextView getTextView() {
-            return textView;
-        }
-        public TextView getTextView2() {
-            return textView2;
-        }
-        public ImageView getImageView() {
-            return icon;
-        }
-    }
-    // END_INCLUDE(recyclerViewSampleViewHolder)
-
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used by RecyclerView.
-     */
-    public CustomAdapter(String[] dataSet,String[] dataSet2, int[] dataSet3) {
-        this.mDataSet = dataSet;
-        this.mDataSet2 = dataSet2;
-        this.mDataSet3 = dataSet3;
     }
 
-    // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
-    // Create new views (invoked by the layout manager)
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view.
-        View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.list_view, viewGroup, false);
-
-        return new ViewHolder(v);
-    }
-    // END_INCLUDE(recyclerViewOnCreateViewHolder)
-
-    // BEGIN_INCLUDE(recyclerViewOnBindViewHolder)
-    // Replace the contents of a view (invoked by the layout manager)
-    @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        Log.d(TAG, "Element " + position + " set.");
-
-        // Get element from your dataset at this position and replace the contents of the view
-        // with that element
-        viewHolder.getTextView().setText(mDataSet[position]);
-        viewHolder.getTextView2().setText(mDataSet2[position]);
-        viewHolder.getImageView().setImageResource(mDataSet3[position]);
-    }
-    // END_INCLUDE(recyclerViewOnBindViewHolder)
-
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        return (null != listRevie ? listRevie.size() : 0);
+
     }
+
+    @Override
+    public void onBindViewHolder(ReviewHolder holder, int position) {
+        final APIReview.ResponBean.DataBean review = listRevie.get(position);
+        final ReviewHolder mainHolder = holder;
+
+   super(view);
+        this.tvidrev = (TextView) view.findViewById(R.id.tv_idreview);
+        this.tvsub = (TextView) view.findViewById(R.id.tv_subtitle);
+        this.tvidkat = (TextView) view.findViewById(R.id.tv_idkategori);
+        this.tvidusr=(TextView) view.findViewById(R.id.tv_iduser);
+        this.tv_creatat=(TextView)view.findViewById(R.id.createat);
+        this.foto = (ImageView) view.findViewById(R.id.icon);
+        this.foto2 = (TextView) view.findViewById(R.id.tv_temp);
+
+        mainHolder.tv.setText(String.valueOf(review.getId_review()));
+        mainHolder.tvtit.setText(review.getJudul_review());
+        mainHolder.tvsub.setText(review.getId_kategori());
+        mainHolder.tvStatus.setText(review.getId_user());
+        mainHolder.tv_telpon.setText(review.getIsi_review());
+        mainHolder.tv_telpon.setText(review.getCreated_at());
+        mainHolder.foto2.setText(review.getGambar_review());
+        Picasso.with(context).load(review.getGambar_review()).into(mainHolder.foto);
+
+        //   namabelakang=guru.getNama_belakang();
+
+        mainHolder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle extras = new Bundle();
+                extras.putInt("id_review",Integer.parseInt(mainHolder.tv.getText().toString()));
+                extras.putString("judul_review",mainHolder.tvtit.getText().toString());
+                extras.putString("id_kategori", mainHolder.tvsub.getText().toString());
+                extras.putString("id_user", mainHolder.tvStatus.getText().toString());
+                extras.putString("isi_review", mainHolder.tv_telpon.getText().toString());
+                extras.putString("created_at", mainHolder.tv_harga.getText().toString());
+                extras.putString("gambar_review",mainHolder.foto2.getText().toString());
+//                extras.putString("profil",mainHolder.foto.toString());
+
+                Log.d("Login", "response >>>= " + mainHolder.foto2.toString());
+                Intent intent = new Intent(context, DetilReviewActivity.class);
+                intent.putExtras(extras);
+                context.startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public ReviewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        // This method will inflate the custom layout and return as viewholder
+        LayoutInflater mInflater = LayoutInflater.from(viewGroup.getContext());
+
+        ViewGroup mainGroup = (ViewGroup) mInflater.inflate(
+                R.layout.list_view, viewGroup, false);
+        ReviewHolder listHolder = new ReviewHolder(mainGroup);
+        return listHolder;
+    }*/
 }

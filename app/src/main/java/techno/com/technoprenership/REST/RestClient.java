@@ -19,16 +19,20 @@ import retrofit.http.Headers;
 import retrofit.http.POST;
 import techno.com.technoprenership.Helper.ToStringConverter;
 import techno.com.technoprenership.Model.APIBaseResponse;
+import techno.com.technoprenership.Model.APIReview;
 import techno.com.technoprenership.Model.APIUser;
 
 
 public class RestClient {
     private static GitApiInterface gitApiInterface;
-    private static String baseUrl = "http://192.168.1.101:8080/" ;
+    private static String baseUrl = "http://reyhand.blues-host.com" ;
 
 
     public static GitApiInterface getClient(){
         if(gitApiInterface==null){
+
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
 
             OkHttpClient okClient = new OkHttpClient();
 
@@ -51,20 +55,23 @@ public class RestClient {
         }
         return gitApiInterface;
     }
-
     public interface GitApiInterface {
         @FormUrlEncoded
-        @POST("webservice/public/login")
+        @POST("/public/login")
         Call<APIUser> login(@Field("email") String email, @Field("password") String password);
 
         @FormUrlEncoded
-        @POST("/webservice/public/register")
+        @POST("/public/register")
         Call<APIBaseResponse> register(@Field("name") String name, @Field("email") String email, @Field("password") String password);
 
         //@Headers("Cache-Control: no-cache")
+
+        @GET("/public/listreview")
+        Call<APIReview> showreview();
         @FormUrlEncoded
-        @GET("/webservice/public/listUser")
-        Call<APIUser> showguru();
+        @POST("/public/posting")
+        Call<APIReview> posting(@Field("judul_review") String judul, @Field("id_kategori") String idkate, @Field("id_user") String iduser, @Field("gambar_review") String gambar, @Field("isi_review") String isi);
+
 /*
         @FormUrlEncoded
         @POST("/api/index.php/Murid/order")

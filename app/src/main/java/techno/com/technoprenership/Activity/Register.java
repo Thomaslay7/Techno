@@ -37,7 +37,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        nama=(EditText)findViewById(R.id.input_nama);
+       // nama=(EditText)findViewById(R.id.input_nama);
         email=(EditText)findViewById(R.id.input_email);
         password=(EditText)findViewById(R.id.input_passwordReg);
         //konfirmasipassword=(EditText)findViewById(R.id.input_konfirmasipasswordReg);

@@ -1,15 +1,18 @@
-package techno.com.technoprenership.Preferences;
+package techno.com.technoprenership.Prefs;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.HashMap;
 
 import techno.com.technoprenership.Activity.Login;
 import techno.com.technoprenership.Model.APIUser;
 
-
+/**
+ * Created by mery on 7/13/2017.
+ */
 public class SessionManager {
     SharedPreferences pref;
 
@@ -29,16 +32,16 @@ public class SessionManager {
 
     //START USER-DATA
     private static final String IS_LOGIN = "IsLoggedIn";
-    public static final String KEY_ID = "id";
-    public static final String KEY_NAMA = "name";
-    //public static final String KEY_NAMA_BELAKANG = "nama_belakang";
-    //public static final String KEY_TEMPAT_LAHIR = "tampat_lahir";
-    //public static final String KEY_TANGGAL_LAHIR = "tanggal_lahir";
-    //public static final String KEY_TELEPON = "telepn";
-   // public static final String KEY_KELAMIN = "kelamin";
-  //  public static final String KEY_ALAMAT = "alamat";
+    public static final String KEY_USERID = "user_id";
+    public static final String KEY_NAMA_DEPAN = "nama_depan";
+    public static final String KEY_NAMA_BELAKANG = "nama_belakang";
+    public static final String KEY_TEMPAT_LAHIR = "tampat_lahir";
+    public static final String KEY_TANGGAL_LAHIR = "tanggal_lahir";
+    public static final String KEY_TELEPON = "telepn";
+    public static final String KEY_KELAMIN = "kelamin";
+    public static final String KEY_ALAMAT = "alamat";
     public static final String KEY_EMAIL = "email";
-//    public static final String KEY_PROFIL = "profil";
+    public static final String KEY_PROFIL = "profil";
     //END USER-DATA
 
     // Constructor
@@ -55,17 +58,13 @@ public class SessionManager {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
         // Storing  in pref
-        editor.putString(KEY_ID, String.valueOf(user.getRespon().getId()));
-        editor.putString(KEY_NAMA, user.getRespon().getName());
-        editor.putString(KEY_EMAIL, user.getRespon().getEmail());
-        /*editor.putString(KEY_NAMA_BELAKANG, user.getRespon().getNama_belakang());
-        editor.putString(KEY_TEMPAT_LAHIR, user.getRespon().getTempat_lahir());
+        editor.putString(KEY_USERID, String.valueOf(user.getRespon().getId()));
+        editor.putString(KEY_NAMA_DEPAN, user.getRespon().getNama_depan());
+        editor.putString(KEY_NAMA_BELAKANG, user.getRespon().getNama_belakang());
         editor.putString(KEY_TANGGAL_LAHIR, user.getRespon().getTanggal_lahir());
-        editor.putString(KEY_TELEPON, user.getRespon().getTelepon());
-        editor.putString(KEY_KELAMIN, user.getRespon().getKelamin());
-        editor.putString(KEY_ALAMAT, user.getRespon().getAlamat());
+        editor.putString(KEY_KELAMIN, user.getRespon().getJenis_kelamin());
+        editor.putString(KEY_EMAIL, user.getRespon().getEmail());
         editor.putString(KEY_PROFIL, user.getRespon().getProfil());
-        */
 
         // commit changes
         editor.commit();
@@ -99,19 +98,20 @@ public class SessionManager {
         HashMap<String, String> user = new HashMap<String, String>();
 
         // user data
-        user.put(KEY_ID, pref.getString(KEY_ID, null));
-        user.put(KEY_NAMA, pref.getString(KEY_NAMA, null));
-       /* user.put(KEY_NAMA_BELAKANG, pref.getString(KEY_NAMA_BELAKANG, null));
+        user.put(KEY_USERID, pref.getString(KEY_USERID, null));
+        user.put(KEY_NAMA_DEPAN, pref.getString(KEY_NAMA_DEPAN, null));
+        user.put(KEY_NAMA_BELAKANG, pref.getString(KEY_NAMA_BELAKANG, null));
         user.put(KEY_TEMPAT_LAHIR, pref.getString(KEY_TEMPAT_LAHIR, null));
         user.put(KEY_TANGGAL_LAHIR, pref.getString(KEY_TANGGAL_LAHIR, null));
         user.put(KEY_TELEPON, pref.getString(KEY_TELEPON, null));
         user.put(KEY_KELAMIN, pref.getString(KEY_KELAMIN, null));
         user.put(KEY_ALAMAT, pref.getString(KEY_ALAMAT, null));
+        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
         user.put(KEY_PROFIL, pref.getString(KEY_PROFIL, null));
-        */user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
         // return user
         return user;
     }
+
     /**
      * Clear session details
      */
